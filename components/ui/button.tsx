@@ -1,44 +1,29 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import { forwardRef } from "react"
+import { tv, type VariantProps } from "tailwind-variants"
 
-import { cn } from "@/lib/utils"
-
-const buttonVariants = cva(
-	"cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-	{
-		variants: {
-			variant: {
-				white: "bg-white text-[var(--color-navy-800)] shadow-sm hover:bg-white/90 hover:shadow-lg transition-all duration-300",
-				gold: "bg-[var(--accent)] text-[var(--accent-foreground)] shadow-sm hover:bg-[var(--accent)]/90 hover:shadow-lg transition-all duration-300",
-				glow: "relative bg-white text-[var(--color-navy-800)] shadow-sm transition-all duration-300 after:absolute after:inset-0 after:rounded-md after:opacity-0 after:shadow-[0_0_30px_rgba(255,255,255,0.3)] after:transition-opacity hover:scale-[1.02] hover:bg-white hover:shadow-xl hover:ring-2 hover:ring-white/20 hover:after:opacity-100",
-				goldGlow:
-					"relative bg-[var(--accent)] text-[var(--accent-foreground)] shadow-sm transition-all duration-300 after:absolute after:inset-0 after:rounded-md after:opacity-0 after:shadow-[0_0_30px_rgba(234,179,8,0.3)] after:transition-opacity hover:scale-[1.02] hover:shadow-xl hover:ring-2 hover:ring-[var(--accent)]/20 hover:after:opacity-100",
-			},
-			size: {
-				default: "h-10 px-4 py-2",
-				icon: "size-9",
-			},
-		},
-		defaultVariants: {
-			variant: "white",
-			size: "default",
+const buttonStyles = tv({
+	base: "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-300 sm:text-base",
+	variants: {
+		variant: {
+			primary: "bg-accent text-accent-foreground hover:bg-accent/90",
+			secondary:
+				"bg-white/10 text-white backdrop-blur-sm hover:bg-white/20",
 		},
 	},
-)
+	defaultVariants: {
+		variant: "primary",
+	},
+})
 
 export interface ButtonProps
-	extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-		VariantProps<typeof buttonVariants> {
-	asChild?: boolean
-}
+	extends React.ComponentProps<"button">,
+		VariantProps<typeof buttonStyles> {}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-	({ className, variant, size, asChild = false, ...props }, ref) => {
-		const Comp = asChild ? Slot : "button"
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, variant, ...props }, ref) => {
 		return (
-			<Comp
-				className={cn(buttonVariants({ variant, size, className }))}
+			<button
+				className={buttonStyles({ variant, className })}
 				ref={ref}
 				{...props}
 			/>
@@ -47,4 +32,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants }
+export { Button, buttonStyles }

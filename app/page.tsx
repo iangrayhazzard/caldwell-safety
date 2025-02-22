@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link from "next/link"
 import { LogoIcon } from "@/assets/logos/icon"
 import { Logo } from "@/assets/logos/logo"
-import { motion, useMotionValueEvent, useScroll } from "framer-motion"
 import {
 	ArrowRight,
 	GavelIcon,
@@ -13,93 +12,127 @@ import {
 	Mail,
 	ScrollTextIcon,
 } from "lucide-react"
+import { motion, useMotionValueEvent, useScroll } from "motion/react"
+import { Link as ScrollLink } from "react-scroll"
 
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonStyles } from "@/components/ui/button"
+
+const DONATE_LINK =
+	"https://secure.anedot.com/caldwell-foundation-for-public-safety-2f3096e4-8fb9-4e46-b849-1ef0f052a2db/1f0997ee-e3b2-4b2c-a78b-702a7d51350c"
 
 export default function LandingPage() {
 	const { scrollY } = useScroll()
 	const [showHeader, setShowHeader] = useState(false)
 
 	useMotionValueEvent(scrollY, "change", (latest) => {
-		// Show header after scrolling past 90vh
+		// Show header after scrolling past 40vh
 		setShowHeader(latest > window.innerHeight * 0.4)
 	})
 
 	return (
 		<div className="flex min-h-screen flex-col">
 			<motion.header
-				initial={{ y: -100 }}
-				animate={{ y: showHeader ? 0 : -100 }}
+				initial={{ y: -96 }}
+				animate={{ y: showHeader ? 0 : -96 }}
 				transition={{ duration: 0.3 }}
-				className="fixed top-0 right-0 left-0 z-50 bg-[var(--color-navy-900)] shadow-lg"
+				className="bg-navy-900 fixed top-0 right-0 left-0 z-50 h-24 shadow-lg sm:h-24"
 			>
-				<div className="mx-auto flex max-w-6xl items-center justify-between pr-6">
-					<Logo className="h-20 w-auto text-white sm:h-24" />
+				<nav className="mx-auto flex h-full max-w-6xl items-center justify-between pr-6">
+					<Logo className="h-full w-auto text-white" />
 					<Link
-						href="#donate"
-						className={buttonVariants({
-							variant: "white",
-							className: "text-sm sm:text-base",
-						})}
+						href={DONATE_LINK}
+						target="_blank"
+						className={buttonStyles({ variant: "primary" })}
 					>
 						Donate
 					</Link>
-				</div>
+				</nav>
 			</motion.header>
 
 			<main className="grow">
-				<section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[var(--color-navy-800)] to-[var(--color-navy-900)] px-4 shadow-2xl">
+				<section
+					className="from-navy-800 to-navy-900 relative flex w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br px-4 shadow-2xl"
+					aria-labelledby="hero-heading"
+				>
 					<div className="relative z-10 mx-auto w-full max-w-6xl py-16 text-center sm:py-24">
 						<LogoIcon className="mx-auto mb-8 w-28 text-white drop-shadow-2xl sm:mb-14 sm:w-44 md:w-64" />
-						<h1 className="mb-5 px-4 font-serif text-3xl font-bold tracking-tight text-balance text-white/95 drop-shadow-lg sm:mb-8 sm:text-5xl md:text-6xl lg:px-8">
+						<h1
+							id="hero-heading"
+							className="mb-5 px-4 font-serif text-3xl font-bold tracking-tight text-balance text-white/95 drop-shadow-lg sm:mb-8 sm:text-5xl md:text-6xl lg:px-8"
+						>
 							Welcome to the Caldwell Foundation for Public Safety
 						</h1>
-						<p className="mx-auto mb-8 max-w-3xl px-4 text-base leading-relaxed text-white/80 drop-shadow sm:mb-12 sm:px-6 sm:text-xl md:px-8">
+						<p className="mx-auto mb-8 max-w-3xl px-4 text-base leading-relaxed text-pretty text-white/80 drop-shadow sm:mb-12 sm:px-6 sm:text-xl md:px-8">
 							At the Caldwell Foundation for Public Safety, we
 							believe that safe communities start with public
 							safety. We are working to create a more secure
 							America through crime prevention, public safety
 							initiatives, and victim support.
 						</p>
-						<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+						<nav className="flex flex-col items-center justify-center gap-4 sm:flex-row">
 							<Link
-								href="#donate"
-								className={buttonVariants({
-									className:
-										"relative w-full bg-white/95 text-sm font-medium text-[var(--color-navy-800)] shadow-lg backdrop-blur-sm transition-all duration-300 after:absolute after:inset-0 after:rounded-lg after:opacity-0 after:shadow-[0_0_30px_rgba(255,255,255,0.2)] after:transition-opacity hover:scale-[1.02] hover:bg-white hover:shadow-xl hover:ring-2 hover:ring-white/20 hover:after:opacity-100 active:scale-[0.98] sm:w-auto sm:text-base",
-								})}
+								href={DONATE_LINK}
+								target="_blank"
+								className={buttonStyles({ variant: "primary" })}
 							>
 								Donate
 							</Link>
-							<Link
-								href="#efforts"
-								scroll={true}
-								className={buttonVariants({
-									className:
-										"group relative w-full bg-white/95 text-sm font-medium text-[var(--color-navy-800)] shadow-lg backdrop-blur-sm transition-all duration-300 after:absolute after:inset-0 after:rounded-lg after:opacity-0 after:shadow-[0_0_30px_rgba(255,255,255,0.2)] after:transition-opacity hover:scale-[1.02] hover:bg-white hover:shadow-xl hover:ring-2 hover:ring-white/20 hover:after:opacity-100 active:scale-[0.98] sm:w-auto sm:text-base",
+							<ScrollLink
+								to="efforts"
+								smooth={true}
+								offset={-96}
+								duration={(distance) =>
+									Math.min(500, Math.max(300, distance * 0.5))
+								}
+								className={buttonStyles({
+									variant: "secondary",
+									className: "group cursor-pointer",
 								})}
 							>
 								Learn More
-								<ArrowRight />
-							</Link>
-						</div>
+								<ArrowRight className="size-4 transition-all group-hover:translate-x-1" />
+							</ScrollLink>
+						</nav>
 					</div>
 				</section>
 
 				<section
 					id="efforts"
-					className="w-full bg-gradient-to-br from-[var(--color-navy-50)] to-[var(--color-navy-100)] py-12 sm:py-24"
+					className="from-navy-50 to-navy-100 w-full bg-gradient-to-br py-12 sm:py-24"
+					aria-labelledby="efforts-heading"
 				>
 					<div className="mx-auto max-w-6xl px-4">
-						<h2 className="mb-10 text-center font-serif text-2xl font-semibold text-[var(--color-navy-800)] sm:mb-16 sm:text-4xl">
+						<h2
+							id="efforts-heading"
+							className="text-navy-800 mb-10 text-center font-serif text-2xl font-semibold sm:mb-16 sm:text-4xl"
+						>
 							Our Efforts
 						</h2>
-						<div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:gap-12">
-							<div className="rounded-2xl bg-white p-5 shadow-md sm:p-8">
-								<div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-navy-50)] sm:mb-6 sm:h-16 sm:w-16">
-									<GavelIcon className="h-5 w-5 text-[var(--color-navy-600)] sm:h-8 sm:w-8" />
-								</div>
-								<h3 className="mb-2 text-lg font-semibold text-[var(--color-navy-700)] sm:mb-3 sm:text-2xl">
+						<motion.ul
+							className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 md:gap-12"
+							role="list"
+							initial="hidden"
+							whileInView="visible"
+							viewport={{ once: true, amount: 0.2 }}
+							variants={{
+								visible: {
+									transition: {
+										staggerChildren: 0.1,
+									},
+								},
+							}}
+						>
+							<motion.li
+								variants={{
+									hidden: { opacity: 0, y: 20 },
+									visible: { opacity: 1, y: 0 },
+								}}
+								className="rounded-2xl bg-white p-5 shadow-md sm:p-8"
+							>
+								<figure className="bg-navy-50)sm:mb-6 mb-4 flex h-10 w-10 items-center justify-center rounded-full sm:h-16 sm:w-16">
+									<GavelIcon className="text-navy-600 h-5 w-5 sm:h-8 sm:w-8" />
+								</figure>
+								<h3 className="text-navy-700 mb-2 text-lg font-semibold sm:mb-3 sm:text-2xl">
 									Advocacy
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
@@ -107,13 +140,19 @@ export default function LandingPage() {
 									policies that protect our communities and
 									support law enforcement.
 								</p>
-							</div>
+							</motion.li>
 
-							<div className="rounded-2xl bg-white p-5 shadow-md sm:p-8">
-								<div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-navy-50)] sm:mb-6 sm:h-16 sm:w-16">
-									<HeartIcon className="h-5 w-5 text-[var(--color-navy-600)] sm:h-8 sm:w-8" />
-								</div>
-								<h3 className="mb-2 text-lg font-semibold text-[var(--color-navy-700)] sm:mb-3 sm:text-2xl">
+							<motion.li
+								variants={{
+									hidden: { opacity: 0, y: 20 },
+									visible: { opacity: 1, y: 0 },
+								}}
+								className="rounded-2xl bg-white p-5 shadow-md sm:p-8"
+							>
+								<figure className="bg-navy-50)sm:mb-6 mb-4 flex h-10 w-10 items-center justify-center rounded-full sm:h-16 sm:w-16">
+									<HeartIcon className="text-navy-600 h-5 w-5 sm:h-8 sm:w-8" />
+								</figure>
+								<h3 className="text-navy-700 mb-2 text-lg font-semibold sm:mb-3 sm:text-2xl">
 									Mental Health Support
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
@@ -121,13 +160,19 @@ export default function LandingPage() {
 									support for victims of violent crime through
 									counseling and recovery programs.
 								</p>
-							</div>
+							</motion.li>
 
-							<div className="rounded-2xl bg-white p-5 shadow-md sm:p-8">
-								<div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-navy-50)] sm:mb-6 sm:h-16 sm:w-16">
-									<ScrollTextIcon className="h-5 w-5 text-[var(--color-navy-600)] sm:h-8 sm:w-8" />
-								</div>
-								<h3 className="mb-2 text-lg font-semibold text-[var(--color-navy-700)] sm:mb-3 sm:text-2xl">
+							<motion.li
+								variants={{
+									hidden: { opacity: 0, y: 20 },
+									visible: { opacity: 1, y: 0 },
+								}}
+								className="rounded-2xl bg-white p-5 shadow-md sm:p-8"
+							>
+								<figure className="bg-navy-50)sm:mb-6 mb-4 flex h-10 w-10 items-center justify-center rounded-full sm:h-16 sm:w-16">
+									<ScrollTextIcon className="text-navy-600 h-5 w-5 sm:h-8 sm:w-8" />
+								</figure>
+								<h3 className="text-navy-700 mb-2 text-lg font-semibold sm:mb-3 sm:text-2xl">
 									Policy Initiatives
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
@@ -135,13 +180,19 @@ export default function LandingPage() {
 									to implement evidence-based policy
 									initiatives that enhance public safety.
 								</p>
-							</div>
+							</motion.li>
 
-							<div className="rounded-2xl bg-white p-5 shadow-md sm:p-8">
-								<div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-navy-50)] sm:mb-6 sm:h-16 sm:w-16">
-									<GraduationCapIcon className="h-5 w-5 text-[var(--color-navy-600)] sm:h-8 sm:w-8" />
-								</div>
-								<h3 className="mb-2 text-lg font-semibold text-[var(--color-navy-700)] sm:mb-3 sm:text-2xl">
+							<motion.li
+								variants={{
+									hidden: { opacity: 0, y: 20 },
+									visible: { opacity: 1, y: 0 },
+								}}
+								className="rounded-2xl bg-white p-5 shadow-md sm:p-8"
+							>
+								<figure className="bg-navy-50)sm:mb-6 mb-4 flex h-10 w-10 items-center justify-center rounded-full sm:h-16 sm:w-16">
+									<GraduationCapIcon className="text-navy-600 h-5 w-5 sm:h-8 sm:w-8" />
+								</figure>
+								<h3 className="text-navy-700 mb-2 text-lg font-semibold sm:mb-3 sm:text-2xl">
 									Public Education
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
@@ -149,15 +200,21 @@ export default function LandingPage() {
 									prevent crime, promote justice, and build
 									safer communities for everyone.
 								</p>
-							</div>
-						</div>
+							</motion.li>
+						</motion.ul>
 					</div>
 				</section>
 
-				<section className="relative w-full overflow-hidden bg-gradient-to-br from-[var(--color-navy-800)] to-[var(--color-navy-900)] py-12 text-white sm:py-24">
+				<section
+					className="from-navy-800 to-navy-900 relative w-full overflow-hidden bg-gradient-to-br py-12 text-white sm:py-24"
+					aria-labelledby="coming-soon-heading"
+				>
 					<div className="bg-texture absolute inset-0 opacity-5"></div>
 					<div className="relative z-10 mx-auto max-w-6xl px-4 text-center">
-						<h2 className="mb-5 font-serif text-2xl font-semibold sm:mb-8 sm:text-4xl">
+						<h2
+							id="coming-soon-heading"
+							className="mb-5 font-serif text-2xl font-semibold sm:mb-8 sm:text-4xl"
+						>
 							Coming Soon
 						</h2>
 						<p className="mx-auto mb-5 max-w-3xl text-base leading-relaxed text-balance text-white/90 sm:mb-8 sm:text-xl">
@@ -171,19 +228,26 @@ export default function LandingPage() {
 
 			<footer
 				id="contact"
-				className="w-full bg-gradient-to-b from-gray-100 to-white py-6 sm:py-12"
+				className="from-navy-50 to-navy-100 text-navy-800 w-full bg-gradient-to-b py-12 sm:py-16"
 			>
-				<div className="mx-auto max-w-6xl px-4 text-center">
-					<p className="mb-2 text-sm text-gray-600 sm:mb-4 sm:text-lg">
-						For inquiries, please contact us at:
-					</p>
-					<a
-						href="mailto:info@caldwellsafety.org"
-						className="inline-flex items-center justify-center gap-2 text-sm font-medium text-[var(--color-navy-600)] transition-colors duration-300 hover:text-[var(--color-navy-800)] sm:text-lg"
-					>
-						<Mail className="h-4 w-4 sm:h-5 sm:w-5" />
-						info@caldwellsafety.org
-					</a>
+				<div className="mx-auto max-w-6xl px-4">
+					<address className="flex flex-col items-center justify-center gap-6 not-italic">
+						<a
+							href="mailto:info@caldwellsafety.org"
+							className="hover:text-navy-600 text-navy-800/90 inline-flex items-center gap-2 text-sm transition-colors"
+						>
+							<Mail className="h-4 w-4" />
+							info@caldwellsafety.org
+						</a>
+
+						<div className="border-navy-600/15 w-full max-w-lg border-t pt-6 text-center">
+							<small className="text-sm opacity-70">
+								© {new Date().getFullYear()} Caldwell
+								Initiative for Public Safety. All rights
+								reserved.
+							</small>
+						</div>
+					</address>
 				</div>
 			</footer>
 		</div>

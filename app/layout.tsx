@@ -27,7 +27,6 @@ export const metadata: Metadata = {
 		"advocacy",
 		"public education",
 	],
-	themeColor: "#0a1325",
 }
 
 export default function RootLayout({
