@@ -25,8 +25,8 @@ export default function LandingPage() {
 	const [showHeader, setShowHeader] = useState(false)
 
 	useMotionValueEvent(scrollY, "change", (latest) => {
-		// Show header after scrolling past 40vh
-		setShowHeader(latest > window.innerHeight * 0.4)
+		// Show header after scrolling past 20vh
+		setShowHeader(latest > window.innerHeight * 0.2)
 	})
 
 	return (
@@ -35,7 +35,7 @@ export default function LandingPage() {
 				initial={{ y: -96 }}
 				animate={{ y: showHeader ? 0 : -96 }}
 				transition={{ duration: 0.3 }}
-				className="bg-navy-900 fixed top-0 right-0 left-0 z-50 h-24 shadow-lg sm:h-24"
+				className="bg-navy-900/80 fixed top-0 right-0 left-0 z-50 h-24 shadow-lg backdrop-blur-sm sm:h-24"
 			>
 				<nav className="mx-auto flex h-full max-w-6xl items-center justify-between pr-6">
 					<Logo className="h-full w-auto text-white" />
