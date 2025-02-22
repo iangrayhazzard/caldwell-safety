@@ -240,8 +240,8 @@ export default function LandingPage() {
 							info@caldwellsafety.org
 						</a>
 
-						<div className="border-navy-600/15 w-full max-w-lg border-t pt-6 text-center">
-							<small className="text-sm text-balance opacity-70">
+						<div className="border-navy-600/15 w-full max-w-lg border-t pt-6 text-center text-balance">
+							<small className="text-sm opacity-70">
 								© {new Date().getFullYear()} Caldwell
 								Initiative for Public Safety. All rights
 								reserved.
