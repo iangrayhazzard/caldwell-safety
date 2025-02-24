@@ -243,7 +243,7 @@ export default function LandingPage() {
 						<div className="border-navy-600/15 w-full max-w-lg border-t pt-6 text-center text-balance">
 							<small className="text-sm opacity-70">
 								© {new Date().getFullYear()} Caldwell
-								Initiative for Public Safety. All rights
+								Foundation for Public Safety. All rights
 								reserved.
 							</small>
 						</div>
