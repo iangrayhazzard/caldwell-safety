@@ -2,6 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { FacebookIcon } from "@/assets/icons/facebook"
+import { InstagramIcon } from "@/assets/icons/instagram"
+import { TikTokIcon } from "@/assets/icons/tiktok"
+import { XIcon } from "@/assets/icons/x"
 import { LogoIcon } from "@/assets/logos/icon"
 import { Logo } from "@/assets/logos/logo"
 import {
@@ -230,24 +234,79 @@ export default function LandingPage() {
 				id="contact"
 				className="from-navy-50 to-navy-100 text-navy-800 w-full bg-gradient-to-b py-12 sm:py-16"
 			>
-				<div className="mx-auto max-w-6xl px-4">
-					<address className="flex flex-col items-center justify-center gap-6 not-italic">
-						<a
-							href="mailto:info@caldwellsafety.org"
-							className="hover:text-navy-600 text-navy-800/90 inline-flex items-center gap-2 text-sm transition-colors"
-						>
-							<Mail className="h-4 w-4" />
-							info@caldwellsafety.org
-						</a>
-
-						<div className="border-navy-600/15 w-full max-w-lg border-t pt-6 text-center text-balance">
-							<small className="text-sm opacity-70">
-								© {new Date().getFullYear()} Caldwell
-								Foundation for Public Safety. All rights
-								reserved.
-							</small>
+				<div className="mx-auto max-w-6xl px-8">
+					<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+						<div className="flex flex-col space-y-4">
+							<h3 className="text-lg font-semibold">Contact</h3>
+							<a
+								href="mailto:info@caldwellsafety.org"
+								className="hover:text-navy-600 text-navy-800/90 inline-flex items-center gap-2 text-sm transition-colors"
+							>
+								<Mail className="h-4 w-4" />
+								info@caldwellsafety.org
+							</a>
 						</div>
-					</address>
+
+						<div className="flex flex-col space-y-4">
+							<h3 className="text-lg font-semibold">Follow</h3>
+							<div className="flex items-center gap-4">
+								<a
+									href="https://www.facebook.com/caldwellgianno"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="hover:text-navy-600 hover:bg-navy-200/50 text-navy-800/90 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
+									aria-label="Facebook"
+								>
+									<FacebookIcon className="size-4" />
+								</a>
+								<a
+									href="https://www.instagram.com/GiannoCaldwell"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="hover:text-navy-600 hover:bg-navy-200/50 text-navy-800/90 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
+									aria-label="Instagram"
+								>
+									<InstagramIcon className="size-4" />
+								</a>
+								<a
+									href="https://www.tiktok.com/@giannocaldwell"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="hover:text-navy-600 hover:bg-navy-200/50 text-navy-800/90 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
+									aria-label="TikTok"
+								>
+									<TikTokIcon className="size-4" />
+								</a>
+								<a
+									href="https://x.com/GiannoCaldwell/"
+									target="_blank"
+									rel="noopener noreferrer"
+									className="hover:text-navy-600 hover:bg-navy-200/50 text-navy-800/90 flex h-8 w-8 items-center justify-center rounded-full transition-colors"
+									aria-label="X (Twitter)"
+								>
+									<XIcon className="size-4" />
+								</a>
+							</div>
+						</div>
+
+						<div className="flex flex-col space-y-4">
+							<h3 className="text-lg font-semibold">
+								Support Our Mission
+							</h3>
+							<p className="text-navy-800/80 text-sm text-pretty">
+								Your donation helps us provide critical support
+								to victims of violent crime and create safer
+								communities across America.
+							</p>
+						</div>
+					</div>
+
+					<div className="border-navy-600/15 mt-8 w-full border-t pt-6 text-center">
+						<p className="text-navy-800/70 text-sm">
+							© {new Date().getFullYear()} Caldwell Foundation
+							for Public Safety. All rights reserved.
+						</p>
+					</div>
 				</div>
 			</footer>
 		</div>
