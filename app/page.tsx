@@ -13,6 +13,7 @@ import {
 	GavelIcon,
 	GraduationCapIcon,
 	HeartIcon,
+	InfoIcon,
 	Mail,
 	ScrollTextIcon,
 } from "lucide-react"
@@ -20,9 +21,39 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react"
 import { Link as ScrollLink } from "react-scroll"
 
 import { buttonStyles } from "@/components/ui/button"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const DONATE_LINK =
 	"https://secure.anedot.com/caldwell-foundation-for-public-safety-2f3096e4-8fb9-4e46-b849-1ef0f052a2db/1f0997ee-e3b2-4b2c-a78b-702a7d51350c"
+
+const DONATION_TOOLTIP_TEXT =
+	"The Caldwell Foundation for Public Safety is a Florida nonprofit " +
+	"corporation that is a tax-exempt charitable organization under Section " +
+	"501(c)(3) of the Internal Revenue Code. Contributions to the Caldwell Foundation " +
+	"for Public Safety are tax-deductible under Section 170 of the Internal " +
+	"Revenue Code. Donors are advised to consult with their tax advisors " +
+	"regarding the deductibility of their contributions."
+
+const DonateButton = ({ className = "" }) => (
+	<>
+		Donate
+		<div className="ml-0.5 inline-flex cursor-help items-center">
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<InfoIcon className="size-4" />
+				</TooltipTrigger>
+				<TooltipContent className="max-w-xs text-xs">
+					{DONATION_TOOLTIP_TEXT}
+				</TooltipContent>
+			</Tooltip>
+		</div>
+	</>
+)
 
 export default function LandingPage() {
 	const { scrollY } = useScroll()
@@ -43,13 +74,18 @@ export default function LandingPage() {
 			>
 				<nav className="mx-auto flex h-full max-w-6xl items-center justify-between pr-6">
 					<Logo className="h-full w-auto text-white" />
-					<Link
-						href={DONATE_LINK}
-						target="_blank"
-						className={buttonStyles({ variant: "primary" })}
-					>
-						Donate
-					</Link>
+					<TooltipProvider>
+						<Link
+							href={DONATE_LINK}
+							target="_blank"
+							className={buttonStyles({
+								variant: "primary",
+								className: "pr-2",
+							})}
+						>
+							<DonateButton />
+						</Link>
+					</TooltipProvider>
 				</nav>
 			</motion.header>
 
@@ -74,13 +110,18 @@ export default function LandingPage() {
 							initiatives, and victim support.
 						</p>
 						<nav className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-							<Link
-								href={DONATE_LINK}
-								target="_blank"
-								className={buttonStyles({ variant: "primary" })}
-							>
-								Donate
-							</Link>
+							<TooltipProvider>
+								<Link
+									href={DONATE_LINK}
+									target="_blank"
+									className={buttonStyles({
+										variant: "primary",
+										className: "pr-2",
+									})}
+								>
+									<DonateButton />
+								</Link>
+							</TooltipProvider>
 							<ScrollLink
 								to="efforts"
 								smooth={true}
@@ -301,8 +342,13 @@ export default function LandingPage() {
 						</div>
 					</div>
 
-					<div className="border-navy-600/15 mt-8 w-full border-t pt-6 text-center">
-						<p className="text-navy-800/70 text-sm">
+					<div className="border-navy-600/15 mt-8 border-t pt-6">
+						<div className="bg-navy-50/70 text-navy-800/90 mx-auto mb-4 max-w-3xl rounded-lg p-4 text-xs leading-relaxed sm:text-sm">
+							<p className="text-pretty">
+								{DONATION_TOOLTIP_TEXT}
+							</p>
+						</div>
+						<p className="text-navy-800/70 text-center text-sm">
 							© {new Date().getFullYear()} Caldwell Foundation
 							for Public Safety. All rights reserved.
 						</p>
