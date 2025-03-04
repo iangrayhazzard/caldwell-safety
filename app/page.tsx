@@ -80,7 +80,7 @@ export default function LandingPage() {
 							target="_blank"
 							className={buttonStyles({
 								variant: "primary",
-								className: "pr-2",
+								className: "px-5",
 							})}
 						>
 							<DonateButton />
@@ -116,7 +116,7 @@ export default function LandingPage() {
 									target="_blank"
 									className={buttonStyles({
 										variant: "primary",
-										className: "pr-2",
+										className: "px-5",
 									})}
 								>
 									<DonateButton />
