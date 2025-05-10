@@ -3,6 +3,8 @@ import { Inter, Playfair_Display } from "next/font/google"
 
 import "./globals.css"
 
+import { BookNotification } from "@/components/book-notification"
+
 const inter = Inter({
 	variable: "--font-inter",
 	subsets: ["latin"],

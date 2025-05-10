@@ -355,6 +355,7 @@ export default function LandingPage() {
 						</p>
 					</div>
 				</div>
+				<BookNotification />
 			</footer>
 		</div>
 	)
