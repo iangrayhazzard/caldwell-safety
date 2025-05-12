@@ -75,18 +75,29 @@ export default function LandingPage() {
 			>
 				<nav className="mx-auto flex h-full max-w-6xl items-center justify-between pr-6">
 					<Logo className="h-full w-auto text-white" />
-					<TooltipProvider>
+					<div className="flex items-center gap-3">
 						<Link
-							href={DONATE_LINK}
-							target="_blank"
+							href="https://caldwellinstitute.org"
 							className={buttonStyles({
-								variant: "primary",
+								variant: "secondary",
 								className: "px-5",
 							})}
 						>
-							<DonateButton />
+							The Institute
 						</Link>
-					</TooltipProvider>
+						<TooltipProvider>
+							<Link
+								href={DONATE_LINK}
+								target="_blank"
+								className={buttonStyles({
+									variant: "primary",
+									className: "px-5",
+								})}
+							>
+								<DonateButton />
+							</Link>
+						</TooltipProvider>
+					</div>
 				</nav>
 			</motion.header>
 
@@ -123,6 +134,15 @@ export default function LandingPage() {
 									<DonateButton />
 								</Link>
 							</TooltipProvider>
+							<Link
+								href="https://caldwellinstitute.org"
+								className={buttonStyles({
+									variant: "secondary",
+									className: "px-5",
+								})}
+							>
+								The Institute
+							</Link>
 							<ScrollLink
 								to="efforts"
 								smooth={true}
