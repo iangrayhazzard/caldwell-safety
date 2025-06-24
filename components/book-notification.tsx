@@ -46,7 +46,7 @@ export function BookNotification() {
 								))}
 								<div className="size-2 rounded-full bg-blue-300" />
 							</div>
-							Available for preorder now
+							Now available for purchase
 						</div>
 						<header className="mb-2 text-white/90">
 							<h2 className="font-sans font-bold">
