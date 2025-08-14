@@ -7,14 +7,68 @@ import { FacebookIcon } from "@/assets/icons/facebook"
 import { InstagramIcon } from "@/assets/icons/instagram"
 import { TikTokIcon } from "@/assets/icons/tiktok"
 import { XIcon } from "@/assets/icons/x"
-import { ArrowRight, Calendar, Mail, MapPin, Sparkles } from "lucide-react"
+import {
+	ArrowRight,
+	Calendar,
+	CheckCircle,
+	Clock,
+	Mail,
+	MapPin,
+	Sparkles,
+	Users,
+	Utensils,
+	Wine,
+} from "lucide-react"
 import { motion, useMotionValueEvent, useScroll } from "motion/react"
 
 import { buttonStyles } from "@/components/ui/button"
 import { Header } from "@/components/header"
 
 const TICKET_LINK =
-	"https://www.eventbrite.com/e/from-tragedy-to-action-an-evening-with-fox-news-analyst-gianno-caldwell-tickets-1424908231879"
+	"https://www.eventbrite.com/e/from-tragedy-to-action-an-evening-with-fox-news-analyst-gianno-caldwell-tickets-1583881053869"
+
+const ticketTiers = [
+	{
+		name: "VIP Reception",
+		price: "$500",
+		label: "Early Bird",
+		time: "5:00 PM – 6:00 PM",
+		features: [
+			"Private meet-and-greet with Gianno Caldwell",
+			"Complimentary hors d'oeuvres",
+			"Complimentary two-hour open bar",
+			"Priority seating at main program",
+			"Exclusive VIP gift bag",
+		],
+		highlighted: true,
+	},
+	{
+		name: "General Admission 1",
+		price: "$150",
+		label: "Early Bird",
+		time: "6:00 PM – 8:00 PM",
+		features: [
+			"Complimentary hors d'oeuvres",
+			"Complimentary one-hour open bar",
+			"Program entry included",
+			"Reserved seating",
+		],
+		highlighted: false,
+	},
+	{
+		name: "General Admission 2",
+		price: "$50",
+		label: "Early Bird",
+		time: "6:00 PM – 8:00 PM",
+		features: [
+			"Complimentary hors d'oeuvres",
+			"Drinks available for purchase",
+			"Program entry included",
+			"General seating",
+		],
+		highlighted: false,
+	},
+]
 
 export default function EventPage() {
 	const { scrollY } = useScroll()
@@ -30,7 +84,7 @@ export default function EventPage() {
 
 			<main className="grow">
 				<section
-					className="from-navy-800 to-navy-900 relative flex min-h-[50vh] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br px-4 shadow-2xl"
+					className="from-navy-800 to-navy-900 relative flex min-h-[60vh] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br px-4 shadow-2xl"
 					aria-labelledby="hero-heading"
 				>
 					<div className="to-navy-900/50 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent" />
@@ -38,24 +92,12 @@ export default function EventPage() {
 						<div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2040%2040%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22%239CA3AF%22%20fill-opacity%3D%220.3%22%3E%3Cpath%20d%3D%22M0%2020L20%200L40%2020L20%2040z%22%3E%3C/path%3E%3C/g%3E%3C/svg%3E')] bg-repeat" />
 					</div>
 
-					<div className="relative z-10 mx-auto w-full max-w-5xl py-16 text-center">
+					<div className="relative z-10 mx-auto w-full max-w-6xl py-20 text-center">
 						<motion.div
 							initial={{ opacity: 0, y: 30 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.8, ease: "easeOut" }}
 						>
-							<div className="mb-8 flex justify-center">
-								<motion.span
-									className="bg-accent/20 text-accent border-accent/30 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold backdrop-blur-sm"
-									initial={{ scale: 0.9 }}
-									animate={{ scale: 1 }}
-									transition={{ delay: 0.2, duration: 0.5 }}
-								>
-									<Sparkles className="h-4 w-4" />
-									Special Event
-								</motion.span>
-							</div>
-
 							<h1
 								id="hero-heading"
 								className="mb-6 px-4 font-serif text-4xl font-bold tracking-tight text-balance text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:px-8 lg:text-7xl"
@@ -63,28 +105,47 @@ export default function EventPage() {
 								From Tragedy to Action
 							</h1>
 							<p className="mx-auto mb-10 max-w-3xl px-4 text-xl leading-relaxed text-balance text-white/90 drop-shadow sm:text-2xl md:px-8">
-								An evening of reflection, dialogue, and action
-								hosted by Gianno Caldwell and the Caldwell
-								Foundation for Public Safety.
+								An Evening with Fox News Analyst Gianno Caldwell
 							</p>
 
 							<motion.div
-								className="mb-12 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-12"
+								className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3"
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
 								transition={{ delay: 0.4, duration: 0.6 }}
 							>
-								<div className="flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm">
-									<Calendar className="text-accent h-6 w-6" />
-									<span className="text-xl font-medium text-white">
-										Thursday, August 14
-									</span>
+								<div className="flex items-center justify-center gap-3 rounded-lg bg-white/10 px-6 py-4 backdrop-blur-sm">
+									<Calendar className="text-accent h-6 w-6 shrink-0" />
+									<div className="text-left">
+										<span className="block text-sm text-white/70">
+											Thursday
+										</span>
+										<span className="text-lg font-semibold text-white">
+											September 25, 2025
+										</span>
+									</div>
 								</div>
-								<div className="flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 backdrop-blur-sm">
-									<MapPin className="text-accent h-6 w-6" />
-									<span className="text-xl font-medium text-white">
-										TAO Chicago
-									</span>
+								<div className="flex items-center justify-center gap-3 rounded-lg bg-white/10 px-6 py-4 backdrop-blur-sm">
+									<Clock className="text-accent h-6 w-6 shrink-0" />
+									<div className="text-left">
+										<span className="block text-sm text-white/70">
+											VIP: 5:00 PM
+										</span>
+										<span className="text-lg font-semibold text-white">
+											6:00 PM - 8:00 PM
+										</span>
+									</div>
+								</div>
+								<div className="flex items-center justify-center gap-3 rounded-lg bg-white/10 px-6 py-4 backdrop-blur-sm">
+									<MapPin className="text-accent h-6 w-6 shrink-0" />
+									<div className="text-left">
+										<span className="block text-sm text-white/70">
+											TAO Chicago
+										</span>
+										<span className="text-lg font-semibold text-white">
+											632 N Dearborn St
+										</span>
+									</div>
 								</div>
 							</motion.div>
 
@@ -103,7 +164,7 @@ export default function EventPage() {
 											"group px-10 py-5 text-xl font-semibold shadow-lg transition-all hover:shadow-xl",
 									})}
 								>
-									Reserve Your Tickets
+									Get Tickets Now
 									<ArrowRight className="size-5 transition-all group-hover:translate-x-1" />
 								</Link>
 							</motion.nav>
@@ -112,7 +173,99 @@ export default function EventPage() {
 				</section>
 
 				<section
-					className="from-navy-50 w-full bg-gradient-to-b to-white py-16 sm:py-28"
+					className="from-navy-50 w-full bg-gradient-to-b to-white py-20 sm:py-28"
+					aria-labelledby="tickets-heading"
+				>
+					<div className="mx-auto max-w-7xl px-4">
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.8 }}
+							className="mb-16 text-center"
+						>
+							<h2
+								id="tickets-heading"
+								className="text-navy-900 mb-4 font-serif text-4xl font-bold"
+							>
+								Choose Your Experience
+							</h2>
+							<p className="mx-auto max-w-3xl text-xl text-gray-600">
+								Join us for an educational evening of
+								thought-provoking discussion about public safety
+								in America
+							</p>
+						</motion.div>
+
+						<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+							{ticketTiers.map((tier, index) => (
+								<motion.div
+									key={tier.name}
+									initial={{ opacity: 0, y: 30 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									viewport={{ once: true }}
+									transition={{
+										duration: 0.5,
+										delay: index * 0.1,
+									}}
+									className={`relative rounded-2xl ${
+										tier.highlighted ?
+											"from-navy-800 to-navy-900 scale-105 bg-gradient-to-br text-white shadow-2xl"
+										:	"border-2 border-gray-200 bg-white"
+									} flex flex-col p-8`}
+								>
+									<div className="mb-6">
+										<h3
+											className={`mb-2 text-2xl font-bold ${tier.highlighted ? "text-white" : "text-navy-900"}`}
+										>
+											{tier.name}
+										</h3>
+										<div className="flex items-baseline gap-2">
+											<span
+												className={`text-4xl font-bold ${tier.highlighted ? "text-white" : "text-navy-900"}`}
+											>
+												{tier.price}
+											</span>
+											<span
+												className={`text-sm ${tier.highlighted ? "text-white/80" : "text-gray-500"}`}
+											>
+												{tier.label}
+											</span>
+										</div>
+										<div
+											className={`mt-3 flex items-center gap-2 ${tier.highlighted ? "text-white/90" : "text-gray-600"}`}
+										>
+											<Clock className="h-4 w-4" />
+											<span className="text-sm">
+												{tier.time}
+											</span>
+										</div>
+									</div>
+									<ul className="mb-8 flex-grow space-y-3">
+										{tier.features.map((feature) => (
+											<li
+												key={feature}
+												className="flex items-start gap-3"
+											>
+												<CheckCircle
+													className={`mt-0.5 h-5 w-5 shrink-0 ${tier.highlighted ? "text-accent" : "text-green-500"}`}
+												/>
+												<span
+													className={`text-sm ${tier.highlighted ? "text-white/90" : "text-gray-600"}`}
+												>
+													{feature}
+												</span>
+											</li>
+										))}
+									</ul>
+								</motion.div>
+							))}
+						</div>
+					</div>
+				</section>
+
+				<section
+					className="to-navy-50 w-full bg-gradient-to-b from-white py-16 sm:py-24"
 					aria-labelledby="about-heading"
 				>
 					<div className="mx-auto max-w-7xl px-4">
@@ -124,6 +277,12 @@ export default function EventPage() {
 								transition={{ duration: 0.8 }}
 								className="order-2 lg:order-1"
 							>
+								<h2
+									id="about-heading"
+									className="text-navy-900 mb-6 font-serif text-3xl font-bold"
+								>
+									About This Event
+								</h2>
 								<div className="space-y-6">
 									<motion.p
 										className="max-w-prose text-lg leading-relaxed text-pretty text-gray-700 sm:text-xl"
@@ -136,12 +295,13 @@ export default function EventPage() {
 										}}
 									>
 										The Caldwell Foundation for Public
-										Safety is proud to host an unforgettable
-										evening in Chicago, bringing together
-										community voices, public safety leaders,
-										and those impacted by violence for a
-										night of reflection, dialogue, and
-										action.
+										Safety invites you to an unforgettable
+										evening in Chicago. This educational
+										event brings together community voices,
+										public safety leaders, and those
+										impacted by violence for a night of
+										meaningful dialogue and actionable
+										solutions.
 									</motion.p>
 									<motion.p
 										className="text-lg leading-relaxed text-gray-700 sm:text-xl"
@@ -153,12 +313,13 @@ export default function EventPage() {
 											delay: 0.3,
 										}}
 									>
-										Hosted by our founder, Gianno Caldwell,
-										this special event will include a panel
+										Hosted by our founder, Fox News analyst
+										Gianno Caldwell, this special event
+										features thought-provoking discussions
 										with powerful perspectives from law
-										enforcement, advocacy, and families on
-										the front lines of America's public
-										safety crisis.
+										enforcement, advocacy groups, and
+										families on the front lines of America's
+										public safety crisis.
 									</motion.p>
 									<motion.p
 										className="text-lg leading-relaxed text-gray-700 sm:text-xl"
@@ -170,12 +331,35 @@ export default function EventPage() {
 											delay: 0.4,
 										}}
 									>
-										Guests will also have a unique
-										opportunity to connect personally with
-										Gianno during an exclusive VIP
-										reception, as well as others passionate
-										about public safety.
+										VIP guests will enjoy an exclusive
+										reception with Gianno, including a
+										private meet-and-greet opportunity,
+										premium refreshments, and the chance to
+										connect personally with others
+										passionate about creating safer
+										communities.
 									</motion.p>
+									<motion.div
+										className="pt-4"
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										viewport={{ once: true }}
+										transition={{
+											duration: 0.5,
+											delay: 0.5,
+										}}
+									>
+										<p className="text-navy-900 mb-2 text-lg font-semibold">
+											Event Location:
+										</p>
+										<p className="text-gray-700">
+											TAO Chicago
+											<br />
+											632 N Dearborn St
+											<br />
+											Chicago, IL 60654
+										</p>
+									</motion.div>
 								</div>
 							</motion.div>
 
@@ -186,24 +370,24 @@ export default function EventPage() {
 								transition={{ duration: 0.8 }}
 								className="order-1 flex justify-center lg:order-2 lg:justify-end"
 							>
-								<div className="relative w-64 sm:w-72">
+								<div className="relative w-72 sm:w-80">
 									<div className="from-navy-600/20 to-navy-800/20 absolute inset-0 rotate-3 transform rounded-xl bg-gradient-to-br"></div>
 									<div className="relative overflow-hidden rounded-xl shadow-2xl">
 										<Image
 											src="/gianno.jpg"
 											alt="Gianno Caldwell"
-											width={240}
-											height={360}
+											width={320}
+											height={480}
 											className="h-auto w-full object-cover"
 											priority
 										/>
 										<div className="from-navy-900/60 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"></div>
-										<div className="absolute right-0 bottom-0 left-0 p-4 text-white">
-											<p className="mb-0.5 font-serif text-xl font-bold">
+										<div className="absolute right-0 bottom-0 left-0 p-6 text-white">
+											<p className="mb-1 font-serif text-2xl font-bold">
 												Gianno Caldwell
 											</p>
-											<p className="text-sm opacity-90">
-												Founder & Host
+											<p className="text-base opacity-90">
+												Fox News Analyst & Founder
 											</p>
 										</div>
 									</div>
@@ -227,8 +411,15 @@ export default function EventPage() {
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
 					>
+						<h2
+							id="cta-heading"
+							className="mb-8 font-serif text-4xl font-bold"
+						>
+							Join Us for a Great Night
+						</h2>
 						<p className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-balance text-white/90 sm:text-2xl">
-							Let's come together for a night of purpose—and take
+							Let's come together for an evening of
+							thought-provoking discussion and take meaningful
 							steps toward a safer, more just America.
 						</p>
 						<motion.div
@@ -246,6 +437,10 @@ export default function EventPage() {
 								A 501(c)(3) nonprofit working to advance
 								justice, strengthen public safety, and empower
 								communities.
+							</p>
+							<p className="mt-6 text-base text-white/60">
+								Tickets start at just $50 • Light refreshments
+								included
 							</p>
 						</motion.div>
 						<motion.div

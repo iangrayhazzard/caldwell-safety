@@ -125,6 +125,9 @@ export default function LandingPage() {
 							className="from-navy-800 to-navy-900 rounded-3xl bg-gradient-to-br p-8 text-white shadow-2xl sm:p-12 md:p-16"
 						>
 							<div className="text-center">
+								<span className="inline-block mb-4 text-sm font-semibold uppercase tracking-wider text-accent bg-white/10 px-4 py-1.5 rounded-full">
+									Upcoming Event
+								</span>
 								<h2
 									id="event-heading"
 									className="mb-4 font-serif text-2xl font-semibold sm:text-4xl"
@@ -132,20 +135,21 @@ export default function LandingPage() {
 									From Tragedy to Action
 								</h2>
 								<p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-balance text-white/90 sm:text-lg">
-									Join us for an evening of reflection,
-									dialogue, and action hosted by Gianno
-									Caldwell
+									An Evening with Fox News Analyst Gianno Caldwell
 								</p>
 								<div className="mb-8 flex flex-col items-center justify-center gap-4 text-white/80 sm:flex-row sm:gap-8">
 									<div className="flex items-center gap-2">
 										<Calendar className="h-5 w-5" />
-										<span>Thursday, August 14</span>
+										<span>Thursday, September 25, 2025</span>
 									</div>
 									<div className="flex items-center gap-2">
 										<MapPin className="h-5 w-5" />
 										<span>TAO Chicago</span>
 									</div>
 								</div>
+								<p className="mb-8 text-white/70">
+									Tickets from $50 • Includes refreshments
+								</p>
 								<Link
 									href="/event"
 									className={buttonStyles({
@@ -153,7 +157,7 @@ export default function LandingPage() {
 										className: "group",
 									})}
 								>
-									Learn More
+									View Event Details
 									<ArrowRight className="size-4 transition-all group-hover:translate-x-1" />
 								</Link>
 							</div>
