@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Logo } from "@/assets/logos/logo"
-import { InfoIcon } from "lucide-react"
+import { InfoIcon, Home, Calendar } from "lucide-react"
 import { motion } from "motion/react"
 
 import { buttonStyles } from "@/components/ui/button"
@@ -45,6 +46,9 @@ interface HeaderProps {
 }
 
 export function Header({ showHeader }: HeaderProps) {
+	const pathname = usePathname()
+	const isEventPage = pathname === "/event"
+	
 	return (
 		<motion.header
 			initial={{ y: -96 }}
@@ -53,8 +57,33 @@ export function Header({ showHeader }: HeaderProps) {
 			className="bg-navy-900/80 fixed top-0 right-0 left-0 z-50 h-24 shadow-lg backdrop-blur-sm sm:h-24"
 		>
 			<nav className="mx-auto flex h-full max-w-6xl items-center justify-between pr-6">
-				<Logo className="h-full w-auto text-white" />
+				<Link href="/" className="h-full">
+					<Logo className="h-full w-auto text-white cursor-pointer hover:opacity-90 transition-opacity" />
+				</Link>
 				<div className="flex items-center gap-3">
+					{isEventPage ? (
+						<Link
+							href="/"
+							className={buttonStyles({
+								variant: "secondary",
+								className: "px-5 flex items-center gap-2",
+							})}
+						>
+							<Home className="h-4 w-4" />
+							Home
+						</Link>
+					) : (
+						<Link
+							href="/event"
+							className={buttonStyles({
+								variant: "secondary",
+								className: "px-5 flex items-center gap-2",
+							})}
+						>
+							<Calendar className="h-4 w-4" />
+							Event
+						</Link>
+					)}
 					<Link
 						href="https://caldwellinstitute.org"
 						className={buttonStyles({
