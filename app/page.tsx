@@ -125,7 +125,7 @@ export default function LandingPage() {
 							className="from-navy-800 to-navy-900 rounded-3xl bg-gradient-to-br p-8 text-white shadow-2xl sm:p-12 md:p-16"
 						>
 							<div className="text-center">
-								<span className="inline-block mb-4 text-sm font-semibold uppercase tracking-wider text-accent bg-white/10 px-4 py-1.5 rounded-full">
+								<span className="text-accent mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-wider uppercase">
 									Upcoming Event
 								</span>
 								<h2
@@ -135,12 +135,15 @@ export default function LandingPage() {
 									From Tragedy to Action
 								</h2>
 								<p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-balance text-white/90 sm:text-lg">
-									An Evening with Fox News Analyst Gianno Caldwell
+									An Evening with Fox News Analyst Gianno
+									Caldwell
 								</p>
 								<div className="mb-8 flex flex-col items-center justify-center gap-4 text-white/80 sm:flex-row sm:gap-8">
 									<div className="flex items-center gap-2">
 										<Calendar className="h-5 w-5" />
-										<span>Thursday, September 25, 2025</span>
+										<span>
+											Wednesday, September 24, 2025
+										</span>
 									</div>
 									<div className="flex items-center gap-2">
 										<MapPin className="h-5 w-5" />

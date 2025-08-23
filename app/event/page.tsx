@@ -118,10 +118,10 @@ export default function EventPage() {
 									<Calendar className="text-accent h-6 w-6 shrink-0" />
 									<div className="text-left">
 										<span className="block text-sm text-white/70">
-											Thursday
+											Wednesday
 										</span>
 										<span className="text-lg font-semibold text-white">
-											September 25, 2025
+											September 24, 2025
 										</span>
 									</div>
 								</div>
