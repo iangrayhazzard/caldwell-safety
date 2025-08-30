@@ -151,7 +151,7 @@ export default function LandingPage() {
 									</div>
 								</div>
 								<p className="mb-8 text-white/70">
-									Tickets from $50 • Includes refreshments
+									General admission free • VIP $250 • Includes refreshments
 								</p>
 								<Link
 									href="/event"

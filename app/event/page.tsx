@@ -30,8 +30,8 @@ const TICKET_LINK =
 const ticketTiers = [
 	{
 		name: "VIP Reception",
-		price: "$500",
-		label: "Early Bird",
+		price: "$250",
+		label: "Limited Seats",
 		time: "5:00 PM – 6:00 PM",
 		features: [
 			"Private meet-and-greet with Gianno Caldwell",
@@ -43,28 +43,15 @@ const ticketTiers = [
 		highlighted: true,
 	},
 	{
-		name: "General Admission 1",
-		price: "$150",
-		label: "Early Bird",
+		name: "General Admission",
+		price: "Free",
+		label: "Open to All",
 		time: "6:00 PM – 8:00 PM",
 		features: [
 			"Complimentary hors d'oeuvres",
-			"Complimentary one-hour open bar",
-			"Program entry included",
-			"Reserved seating",
-		],
-		highlighted: false,
-	},
-	{
-		name: "General Admission 2",
-		price: "$50",
-		label: "Early Bird",
-		time: "6:00 PM – 8:00 PM",
-		features: [
-			"Complimentary hors d'oeuvres",
-			"Drinks available for purchase",
 			"Program entry included",
 			"General seating",
+			"Drinks available for purchase",
 		],
 		highlighted: false,
 	},
@@ -439,7 +426,7 @@ export default function EventPage() {
 								communities.
 							</p>
 							<p className="mt-6 text-base text-white/60">
-								Tickets start at just $50 • Light refreshments
+								General admission is free • Light refreshments
 								included
 							</p>
 						</motion.div>
