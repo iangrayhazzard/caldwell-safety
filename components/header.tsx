@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Logo } from "@/assets/logos/logo"
-import { InfoIcon, Home, Calendar } from "lucide-react"
+import { Calendar, Home, InfoIcon, Newspaper } from "lucide-react"
 import { motion } from "motion/react"
 
 import { buttonStyles } from "@/components/ui/button"
@@ -25,7 +25,7 @@ export const DONATION_TOOLTIP_TEXT =
 	"Revenue Code. Donors are advised to consult with their tax advisors " +
 	"regarding the deductibility of their contributions."
 
-export const DonateButton = ({ className = "" }) => (
+export const DonateButton = () => (
 	<>
 		Donate
 		<div className="ml-0.5 inline-flex cursor-help items-center">
@@ -48,7 +48,9 @@ interface HeaderProps {
 export function Header({ showHeader }: HeaderProps) {
 	const pathname = usePathname()
 	const isEventPage = pathname === "/event"
-	
+	const isNewsPage = pathname === "/news"
+	const isHomePage = pathname === "/"
+
 	return (
 		<motion.header
 			initial={{ y: -96 }}
@@ -58,30 +60,43 @@ export function Header({ showHeader }: HeaderProps) {
 		>
 			<nav className="mx-auto flex h-full max-w-6xl items-center justify-between pr-6">
 				<Link href="/" className="h-full">
-					<Logo className="h-full w-auto text-white cursor-pointer hover:opacity-90 transition-opacity" />
+					<Logo className="h-full w-auto cursor-pointer text-white transition-opacity hover:opacity-90" />
 				</Link>
 				<div className="flex items-center gap-3">
-					{isEventPage ? (
+					{!isHomePage && (
 						<Link
 							href="/"
 							className={buttonStyles({
 								variant: "secondary",
-								className: "px-5 flex items-center gap-2",
+								className: "flex items-center gap-2 px-5",
 							})}
 						>
 							<Home className="h-4 w-4" />
 							Home
 						</Link>
-					) : (
+					)}
+					{!isEventPage && (
 						<Link
 							href="/event"
 							className={buttonStyles({
 								variant: "secondary",
-								className: "px-5 flex items-center gap-2",
+								className: "flex items-center gap-2 px-5",
 							})}
 						>
 							<Calendar className="h-4 w-4" />
 							Event
+						</Link>
+					)}
+					{!isNewsPage && (
+						<Link
+							href="/news"
+							className={buttonStyles({
+								variant: "secondary",
+								className: "flex items-center gap-2 px-5",
+							})}
+						>
+							<Newspaper className="h-4 w-4" />
+							News
 						</Link>
 					)}
 					<Link
