@@ -1,51 +1,43 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { FacebookIcon } from "@/assets/icons/facebook"
-import { InstagramIcon } from "@/assets/icons/instagram"
-import { TikTokIcon } from "@/assets/icons/tiktok"
-import { XIcon } from "@/assets/icons/x"
-import { LogoIcon } from "@/assets/logos/icon"
 import {
 	ArrowRight,
-	Calendar,
 	GavelIcon,
 	GraduationCapIcon,
 	HeartIcon,
 	InfoIcon,
 	Mail,
-	MapPin,
 	ScrollTextIcon,
-} from "lucide-react"
-import { motion, useMotionValueEvent, useScroll } from "motion/react"
-import { Link as ScrollLink } from "react-scroll"
-
-import { buttonStyles } from "@/components/ui/button"
+} from "lucide-react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import Link from "next/link";
+import { useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
+import { FacebookIcon } from "@/assets/icons/facebook";
+import { InstagramIcon } from "@/assets/icons/instagram";
+import { TikTokIcon } from "@/assets/icons/tiktok";
+import { XIcon } from "@/assets/icons/x";
+import { LogoIcon } from "@/assets/logos/icon";
+import { BookNotification } from "@/components/book-notification";
 import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { BookNotification } from "@/components/book-notification"
-import {
-	DonateButton,
 	DONATION_TOOLTIP_TEXT,
+	DonateButton,
 	Header,
-} from "@/components/header"
+} from "@/components/header";
+import { buttonStyles } from "@/components/ui/button";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const DONATE_LINK =
-	"https://secure.anedot.com/caldwell-foundation-for-public-safety-2f3096e4-8fb9-4e46-b849-1ef0f052a2db/1f0997ee-e3b2-4b2c-a78b-702a7d51350c"
+	"https://secure.anedot.com/caldwell-foundation-for-public-safety-2f3096e4-8fb9-4e46-b849-1ef0f052a2db/1f0997ee-e3b2-4b2c-a78b-702a7d51350c";
 
 export default function LandingPage() {
-	const { scrollY } = useScroll()
-	const [showHeader, setShowHeader] = useState(false)
+	const { scrollY } = useScroll();
+	const [showHeader, setShowHeader] = useState(false);
 
 	useMotionValueEvent(scrollY, "change", (latest) => {
 		// Show header after scrolling past 20vh
-		setShowHeader(latest > window.innerHeight * 0.2)
-	})
+		setShowHeader(latest > window.innerHeight * 0.2);
+	});
 
 	return (
 		<div className="flex min-h-screen flex-col">
@@ -65,10 +57,9 @@ export default function LandingPage() {
 							Welcome to the Caldwell Foundation for Public Safety
 						</h1>
 						<p className="mx-auto mb-8 max-w-3xl px-4 text-base leading-relaxed text-pretty text-white/80 drop-shadow sm:mb-12 sm:px-6 sm:text-xl md:px-8">
-							At the Caldwell Foundation for Public Safety, we
-							believe that safe communities start with public
-							safety. We are working to create a more secure
-							America through crime prevention, public safety
+							At the Caldwell Foundation for Public Safety, we believe that safe
+							communities start with public safety. We are working to create a
+							more secure America through crime prevention, public safety
 							initiatives, and victim support.
 						</p>
 						<nav className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -113,62 +104,6 @@ export default function LandingPage() {
 				</section>
 
 				<section
-					className="relative w-full overflow-hidden bg-white py-12 sm:py-24"
-					aria-labelledby="event-heading"
-				>
-					<div className="mx-auto max-w-6xl px-4">
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, amount: 0.2 }}
-							transition={{ duration: 0.6 }}
-							className="from-navy-800 to-navy-900 rounded-3xl bg-gradient-to-br p-8 text-white shadow-2xl sm:p-12 md:p-16"
-						>
-							<div className="text-center">
-								<span className="text-accent mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-wider uppercase">
-									Upcoming Event
-								</span>
-								<h2
-									id="event-heading"
-									className="mb-4 font-serif text-2xl font-semibold sm:text-4xl"
-								>
-									From Tragedy to Action
-								</h2>
-								<p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-balance text-white/90 sm:text-lg">
-									An Evening with Fox News Analyst Gianno
-									Caldwell
-								</p>
-								<div className="mb-8 flex flex-col items-center justify-center gap-4 text-white/80 sm:flex-row sm:gap-8">
-									<div className="flex items-center gap-2">
-										<Calendar className="h-5 w-5" />
-										<span>
-											Wednesday, September 24, 2025
-										</span>
-									</div>
-									<div className="flex items-center gap-2">
-										<MapPin className="h-5 w-5" />
-										<span>TAO Chicago</span>
-									</div>
-								</div>
-								<p className="mb-8 text-white/70">
-									General admission free • VIP $250 • Includes refreshments
-								</p>
-								<Link
-									href="/event"
-									className={buttonStyles({
-										variant: "primary",
-										className: "group",
-									})}
-								>
-									View Event Details
-									<ArrowRight className="size-4 transition-all group-hover:translate-x-1" />
-								</Link>
-							</div>
-						</motion.div>
-					</div>
-				</section>
-
-				<section
 					id="efforts"
 					className="from-navy-50 to-navy-100 w-full bg-gradient-to-br py-12 sm:py-24"
 					aria-labelledby="efforts-heading"
@@ -208,9 +143,8 @@ export default function LandingPage() {
 									Advocacy
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
-									Advocating for stronger law and order
-									policies that protect our communities and
-									support law enforcement.
+									Advocating for stronger law and order policies that protect
+									our communities and support law enforcement.
 								</p>
 							</motion.li>
 
@@ -228,9 +162,8 @@ export default function LandingPage() {
 									Mental Health Support
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
-									Providing mental health resources and
-									support for victims of violent crime through
-									counseling and recovery programs.
+									Providing mental health resources and support for victims of
+									violent crime through counseling and recovery programs.
 								</p>
 							</motion.li>
 
@@ -248,9 +181,8 @@ export default function LandingPage() {
 									Policy Initiatives
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
-									Partnering with lawmakers and organizations
-									to implement evidence-based policy
-									initiatives that enhance public safety.
+									Partnering with lawmakers and organizations to implement
+									evidence-based policy initiatives that enhance public safety.
 								</p>
 							</motion.li>
 
@@ -268,9 +200,8 @@ export default function LandingPage() {
 									Public Education
 								</h3>
 								<p className="text-sm leading-relaxed text-gray-500 sm:text-base">
-									Educating the public on strategies to
-									prevent crime, promote justice, and build
-									safer communities for everyone.
+									Educating the public on strategies to prevent crime, promote
+									justice, and build safer communities for everyone.
 								</p>
 							</motion.li>
 						</motion.ul>
@@ -290,9 +221,8 @@ export default function LandingPage() {
 							Coming Soon
 						</h2>
 						<p className="mx-auto mb-5 max-w-3xl text-base leading-relaxed text-balance text-white/90 sm:mb-8 sm:text-xl">
-							Stay tuned for updates on our work and policies.
-							Visit again soon to find out how you can support our
-							mission!
+							Stay tuned for updates on our work and policies. Visit again soon
+							to find out how you can support our mission!
 						</p>
 					</div>
 				</section>
@@ -358,31 +288,26 @@ export default function LandingPage() {
 						</div>
 
 						<div className="flex flex-col space-y-4">
-							<h3 className="text-lg font-semibold">
-								Support Our Mission
-							</h3>
+							<h3 className="text-lg font-semibold">Support Our Mission</h3>
 							<p className="text-navy-800/80 text-sm text-pretty">
-								Your donation helps us provide critical support
-								to victims of violent crime and create safer
-								communities across America.
+								Your donation helps us provide critical support to victims of
+								violent crime and create safer communities across America.
 							</p>
 						</div>
 					</div>
 
 					<div className="border-navy-600/15 mt-8 border-t pt-6">
 						<div className="bg-navy-50/70 text-navy-800/90 mx-auto mb-4 max-w-3xl rounded-lg p-4 text-xs leading-relaxed sm:text-sm">
-							<p className="text-pretty">
-								{DONATION_TOOLTIP_TEXT}
-							</p>
+							<p className="text-pretty">{DONATION_TOOLTIP_TEXT}</p>
 						</div>
 						<p className="text-navy-800/70 text-center text-sm">
-							© {new Date().getFullYear()} Caldwell Foundation
-							for Public Safety. All rights reserved.
+							© {new Date().getFullYear()} Caldwell Foundation for Public
+							Safety. All rights reserved.
 						</p>
 					</div>
 				</div>
 				<BookNotification />
 			</footer>
 		</div>
-	)
+	);
 }
